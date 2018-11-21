@@ -24,9 +24,32 @@ Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (m
  */
 public class P198 {
 	 public int rob(int[] nums) {
-		return 0;
+		 if (nums.length==0)
+	            return 0;
+		int prepos = 1;
+		int prevalue = nums[0];
+		for (int i=1;i<nums.length;i++) {			
+			if (prepos==0) {
+				prevalue = prevalue + nums[i];
+				prepos = 1;
+			}else {
+				if (nums[i]>nums[i-1]) {
+					if (i-2>=0) {
+						prevalue = prevalue - nums[i-1] + nums[i] + nums[i-2];
+					}else {
+						prevalue = prevalue - nums[i-1] + nums[i];
+					}
+					prepos = 1;
+				}else {
+					prepos = 0;
+				}
+			}
+		}
+		return prevalue;
 	        
 	 }
+	 
+	 
 	 
 	 /**
 	  * Our first example uses dynamic programming to solve a simple problem in deciding where to cut steel rods. Serling Enterprises buys long steel rods and cuts them
@@ -55,11 +78,18 @@ number of inches. Figure 15.1 gives a sample price table
 		return r[n];
 		 
 	 }
-	 public static void main(String[] args) {
+	 public static void main1(String[] args) {
 		 P198 p = new P198();
 	    	int[] input = new int[] {1,5,8,9,10,17,17,20,24,30}; //2,3,1,1,4  3,2,1,0,4
 	    	for( int i=1;i<11;i++)
 	    		System.out.println(i+": "+p.cut_rob_bottom_up(input,i));
 	    }
+	 
+	 public static void main(String[] args) {
+		 P198 p = new P198();
+		 int[] input = new int[] {1,2,3,1}; //2,3,1,1,4  3,2,1,0,4
+		 System.out.println(p.rob(input));
+		 
+	 }
 	 
 }
