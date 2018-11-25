@@ -23,7 +23,7 @@ Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (m
              Total amount you can rob = 2 + 9 + 1 = 12.
  */
 public class P198 {
-	 public int rob(int[] nums) {
+	 public int rob_0(int[] nums) {
 		 if (nums.length==0)
 	            return 0;
 		int prepos = 1;
@@ -33,12 +33,14 @@ public class P198 {
 				prevalue = prevalue + nums[i];
 				prepos = 1;
 			}else {
-				if (nums[i]>nums[i-1]) {
-					if (i-2>=0) {
-						prevalue = prevalue - nums[i-1] + nums[i] + nums[i-2];
-					}else {
-						prevalue = prevalue - nums[i-1] + nums[i];
-					}
+				int tt = 0;
+				if (i-2>=0) {
+					tt = nums[i-2];
+				}
+				if (nums[i]>(nums[i-1]-tt)) {
+					
+						prevalue = prevalue - nums[i-1] + nums[i] + tt;
+					
 					prepos = 1;
 				}else {
 					prepos = 0;
@@ -49,7 +51,30 @@ public class P198 {
 	        
 	 }
 	 
-	 
+	 public int rob(int[] nums) {
+		 if (nums.length==0)
+	            return 0;
+		int p0 = 0;
+		int p1 = 0;
+		for (int i=0;i<nums.length;i++) {			
+			int t = p1;
+			int prev = 0;
+			if (i==0) {
+				prev = 0;
+			}else {
+				prev = nums[i-1];
+			}
+			if ((p0 + nums[i])>(p0-prev+nums[i])) {
+				p1 = p0 + nums[i];
+			}else {
+				p1 = p1-prev+nums[i];
+			}
+			p0=t;
+			System.out.println(p0+" "+p1);
+		}
+		return p1>p0?p1:p0;
+	        
+	 }
 	 
 	 /**
 	  * Our first example uses dynamic programming to solve a simple problem in deciding where to cut steel rods. Serling Enterprises buys long steel rods and cuts them
@@ -87,7 +112,7 @@ number of inches. Figure 15.1 gives a sample price table
 	 
 	 public static void main(String[] args) {
 		 P198 p = new P198();
-		 int[] input = new int[] {1,2,3,1}; //2,3,1,1,4  3,2,1,0,4
+		 int[] input = new int[] {2,3,2}; //2,3,1,1,4  3,2,1,0,4
 		 System.out.println(p.rob(input));
 		 
 	 }
