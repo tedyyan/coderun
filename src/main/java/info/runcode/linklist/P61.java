@@ -1,4 +1,4 @@
-package info.runcode;
+package info.runcode.linklist;
 
 public class P61 {
 	/**

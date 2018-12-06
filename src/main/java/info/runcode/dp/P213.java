@@ -1,4 +1,4 @@
-package info.runcode;
+package info.runcode.dp;
 
 public class P213 {
 	//House Robber II
