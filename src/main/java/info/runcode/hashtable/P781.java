@@ -7,7 +7,8 @@ public class P781 {
 //	152
 //
 //
-//	In a forest, each rabbit has some color. Some subset of rabbits (possibly all of them) tell you how many other rabbits have the same color as them. Those answers are placed in an array.
+//	In a forest, each rabbit has some color. Some subset of rabbits (possibly all of them) tell you 
+//	how many other rabbits have the same color as them. Those answers are placed in an array.
 //
 //	Return the minimum number of rabbits that could be in the forest.
 //
@@ -31,4 +32,16 @@ public class P781 {
 //	answers will have length at most 1000.
 //	Each answers[i] will be an integer in the range [0, 999].
 	
+	
+	public int numRabbits(int[] answers) {
+		return 0;
+        
+    }
+	 public static void main(String[] args) {
+		 P781 p = new P781();
+		 int[] input = new int[] {1}; //2,3,1,1,4  3,2,1,0,4 2,7,9,3,1 2,3,2
+		
+		 System.out.println((p.numRabbits(input)));
+		 
+	 }
 }
