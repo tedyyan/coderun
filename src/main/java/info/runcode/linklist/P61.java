@@ -75,18 +75,19 @@ rotate 4 steps to the right: 2->0->1->NULL
     	a.PrintAList(r);
     }
     
-    public ListNode BuildAList(int[] a){
+    public static ListNode BuildAList(int[] a){
+    	P61 in = new P61();
     	ListNode r = null;
     	ListNode h = null;
     	for(int i=a.length-1;i>=0;i--) {
-    		h = new ListNode(a[i]);
+    		h = in.new ListNode(a[i]);
     		h.next = r;
     		r = h;
     	}
     	return h;
     }
     
-    public void PrintAList(ListNode head){
+    public static void PrintAList(ListNode head){
     	ListNode tmp = head;
     	while(tmp!=null) {
     		System.out.print(tmp.val);
