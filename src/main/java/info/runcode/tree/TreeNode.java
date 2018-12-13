@@ -42,5 +42,29 @@ package info.runcode.tree;
  	   
  		return root;
  	}
+ 	
+ 	public void midtravel(TreeNode root) {
+		if (root == null)
+			return;
+		System.out.println(root.val);
+		if  (root.left!=null) {
+			midtravel(root.left);
+		}
+		if  (root.right!=null) {
+			midtravel(root.right);
+		}
+	}
+	
+	public void fronttravel12(TreeNode root) {
+		if (root == null)
+			return;
+		if  (root.left!=null) {
+			fronttravel12(root.left);
+		}
+		System.out.println(root.val);
+		if  (root.right!=null) {
+			fronttravel12(root.right);
+		}
+	}
  }
  

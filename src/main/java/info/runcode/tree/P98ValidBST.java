@@ -35,60 +35,55 @@ public class P98ValidBST {
 //	320,751
 //	Submissions
 //	1,294,480
+
+	boolean stopflag = false;
+	int ahead = Integer.MIN_VALUE;
+	private boolean first = true;
 	
-	public boolean isValidBST(TreeNode root) {
-		
-		return false;        
+	public static boolean isValidBST(TreeNode root) {
+    	P98ValidBST a = new P98ValidBST();
+		a.fronttravel2(root);
+		return !a.stopflag;     
     }
 	
-	public void midtravel(TreeNode root) {
+	public void fronttravel2(TreeNode root) {
+
+		if (stopflag == true){
+			return;
+		}
 		if (root == null)
 			return;
-		System.out.println(root.val);
 		if  (root.left!=null) {
-			midtravel(root.left);
+			fronttravel2(root.left);
 		}
+		if (stopflag == true){
+			return;
+		}
+		if (first  == true) {
+			first = false;
+			
+		}else {
+			if (root.val <= ahead) {
+				stopflag = true;
+				return;
+			}
+		}
+		
+		System.out.println(root.val);			
+		ahead = root.val;
 		if  (root.right!=null) {
-			midtravel(root.right);
+			fronttravel2(root.right);
 		}
 	}
 	
-	public void fronttravel(TreeNode root) {
-		if (root == null)
-			return;
-		if  (root.left!=null) {
-			fronttravel(root.left);
-		}
-		System.out.println(root.val);
-		if  (root.right!=null) {
-			fronttravel(root.right);
-		}
-	}
+	
 
     public static void main(String[] args) {
-    	P98ValidBST a = new P98ValidBST();
-    	int[] t = new int[] {5,3,8,2,4,6,Integer.MAX_VALUE};
-    	TreeNode tree = TreeNode.createBinaryTreeByArray(t, 0);
-    	a.fronttravel(tree);
-    	
+    	//int[] t = new int[] {5,3,8,2,4,6,Integer.MAX_VALUE};
+    	//int[] t = new int[] {5,1,4,Integer.MAX_VALUE,Integer.MAX_VALUE,3,6};
+    	int[] t = new int[] {Integer.MIN_VALUE};
+    	TreeNode root = TreeNode.createBinaryTreeByArray(t, 0);
+    	//a.fronttravel(root);
+    	System.out.println(P98ValidBST.isValidBST(root));
     }
-//	public TreeNode buildMidTree(int[] input) {
-//		TreeNode l = null;
-//		TreeNode m = null;
-//		TreeNode r = null;
-//		for(int i=0;i<input.length;i++) {
-//			TreeNode t = new TreeNode(input[i]);
-//			if (l != null) {
-//				t.left = l;
-//			}
-//			if (r != null) {
-//				t.right = r;
-//			}
-//			l = t;
-//			
-//		}
-//		return null;
-//	}
-	
-	
 }
