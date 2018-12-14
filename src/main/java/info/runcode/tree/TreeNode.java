@@ -3,12 +3,17 @@ package info.runcode.tree;
 
  //Definition for a binary tree node.
  public class TreeNode {
-
 	public static long NULL_PLACEHOLDER = Integer.MAX_VALUE;
      int val;
      TreeNode left;
      TreeNode right;
      TreeNode(int x) { val = x; }
+     
+
+	 public String toString() {
+		return String.valueOf(val);
+		 
+	 }
      /**
  	 * 
  	 * 
