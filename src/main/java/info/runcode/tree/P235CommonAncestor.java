@@ -114,8 +114,10 @@ public class P235CommonAncestor {
 		 //int[] t = new int[] { Integer.MIN_VALUE };
 		 int[] t = new int[] {6,2,8,0,4,7,9,Integer.MAX_VALUE,Integer.MAX_VALUE,3,5};
 		TreeNode root = TreeNode.createBinaryTreeByArray(t, 0);
-		TreeNode p = root.left;
-		TreeNode q = root.left.right;
+		TreeNode p = root.left;   //2
+		TreeNode q = root.left.right;   //0
+		System.out.println("p: " + p.val);
+		System.out.println("q: " + q.val);
 		// a.fronttravel(root);
 		System.out.println(lowestCommonAncestor(root, p, q).val);
 	}
