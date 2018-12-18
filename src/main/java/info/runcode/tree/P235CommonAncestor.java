@@ -113,7 +113,7 @@ public class P235CommonAncestor {
 		// int[] t = new int[] {5,1,4,Integer.MAX_VALUE,Integer.MAX_VALUE,3,6};
 		 //int[] t = new int[] { Integer.MIN_VALUE };
 		 int[] t = new int[] {6,2,8,0,4,7,9,Integer.MAX_VALUE,Integer.MAX_VALUE,3,5};
-		TreeNode root = TreeNode.createBinaryTreeByArray(t, 0);
+		TreeNode root = TreeNode.createBinaryTreeByArray_good(t, 0);
 		TreeNode p = root.left;   //2
 		TreeNode q = root.left.right;   //0
 		System.out.println("p: " + p.val);

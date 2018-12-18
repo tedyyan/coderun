@@ -36,6 +36,9 @@ public class P121StockBSII {
 //	Input: [7,6,4,3,1]
 //	Output: 0
 //	Explanation: In this case, no transaction is done, i.e. max profit = 0.
+	//-------------下面的解法是DP,不是贪心算法------------------------
+	
+	
 	public int maxProfit(int[] n) {
 			if ((n==null)||(n.length<2)) {
 				return 0;
@@ -71,10 +74,24 @@ public class P121StockBSII {
 			return tm;        
 		
 	}
+	//-----------------------------------贪心算法---------------------------------------
+	public int maxProfitGreedy(int[] n) {
+		if ((n==null)||(n.length<2)) {
+			return 0;
+		}
+		int max = 0;
+		for(int i=0;i<n.length-1;i++) {
+			if (n[i+1] > n[i]) {
+				max = max + (n[i+1] - n[i]);
+			}
+		}
+		return max;
+	}
+		
 	 public static void main(String[] args) {
 		 P121StockBSII p = new P121StockBSII();
 		 int[] input = new int[] {1,200,100,1000}; //9,8,7,6,5  3,2,1,0,4 2,7,9,3,1 2,3,2 2,10,1,2,19,2,1
-		 System.out.println(p.maxProfit(input));
+		 System.out.println(p.maxProfitGreedy(input));
 		 
 	 }
 }
