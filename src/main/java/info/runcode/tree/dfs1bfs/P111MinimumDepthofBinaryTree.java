@@ -30,7 +30,16 @@ public class P111MinimumDepthofBinaryTree {
 //	    /  \
 //	   15   7
 //	return its minimum depth = 2.
+	
 	public int minDepth(TreeNode root) {
+		if(root==null) return 0;
+		int left = minDepth(root.left);
+		int right = minDepth(root.right);
+		return (left == 0 || right == 0) ? left+right+1:Math.min(left, right) + 1;
+
+	}
+	
+	public int minDepth2(TreeNode root) {
 		if (root == null) return 0;
 		dfs(root);
 		return mindeep;
@@ -72,7 +81,7 @@ public class P111MinimumDepthofBinaryTree {
 		// int[] t = new int[] {5,3,8,2,4,6,Integer.MAX_VALUE};
 		//int[] t = new int[] { 5, 1, 4, 111, Integer.MAX_VALUE, 3, 6, 112, Integer.MAX_VALUE,
 		//		Integer.MAX_VALUE, Integer.MAX_VALUE, 12, 13,Integer.MAX_VALUE, Integer.MAX_VALUE, 14 };
-		int[] t = new int[] {0};
+		int[] t = new int[] {1,2,3,4};
 		
 		TreeNode root = TreeNode.createBinaryTreeByArray_good(t, 0);
 		//root.fronttravel12(root);

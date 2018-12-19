@@ -34,49 +34,74 @@ public class P104MaximumDepthofBinaryTree {
 	// return its depth = 3.
 
 	public int maxDepth(TreeNode root) {
-		if (root == null) return 0;
-		dfs(root);
+		if (root == null)
+			return 0;
+		
+		return dfs(root);
+
+	}
+	public int maxDepth_bad(TreeNode root) {
+		if (root == null)
+			return 0;
+		 dfs_bad(root);
 		return maxdeep;
 
 	}
+
 	static int maxdeep = 1;
 	static int deep = 0;
-	private void dfs(TreeNode roots) {
-		
+
+	private void dfs_bad(TreeNode roots) {
+
 		if (roots == null) {
 			return;
 		}
 		deep++;
-		if (deep>maxdeep) {
+		if (deep > maxdeep) {
 			maxdeep = deep;
 		}
-		//System.out.println(roots.val);
+		// System.out.println(roots.val);
 
 		// all childs
 		TreeNode t = roots.left;
-		
-		dfs(t);
-		
+
+		dfs_bad(t);
+
 		t = roots.right;
-	
-		dfs(t);
+
+		dfs_bad(t);
 		deep--;
+
+	}
+
+	private int dfs(TreeNode roots) {
+
+		if (roots == null) {
+			return 0;
+		}
+		int left = dfs(roots.left);
+		int right = dfs(roots.right);
+		return left > right ? left + 1 : right + 1;
 
 	}
 
 	public static void main(String[] args) {
 		// int[] t = new int[] {5,3,8,2,4,6,Integer.MAX_VALUE};
-		//int[] t = new int[] { 5, 1, 4, 111, Integer.MAX_VALUE, 3, 6, 112, Integer.MAX_VALUE,
-		//		Integer.MAX_VALUE, Integer.MAX_VALUE, 12, 13,Integer.MAX_VALUE, Integer.MAX_VALUE, 14 };
-		 int[] t = new int[] {0};
-		
+		 int[] t = new int[] { 5, 1, 4, 111, Integer.MAX_VALUE, 3, 6, 112,
+		 Integer.MAX_VALUE,
+		 Integer.MAX_VALUE, Integer.MAX_VALUE, 12, 13,Integer.MAX_VALUE,
+		 Integer.MAX_VALUE, 14 };
+		//int[] t = new int[] { 1, 2, 3, 4 };
+
 		TreeNode root = TreeNode.createBinaryTreeByArray_good(t, 0);
-		//root.fronttravel12(root);
-		//System.out.println("-----------------------");
+		// root.fronttravel12(root);
+		// System.out.println("-----------------------");
 		P104MaximumDepthofBinaryTree a = new P104MaximumDepthofBinaryTree();
-		//TreeNode.StartToDfs(root);
+		// TreeNode.StartToDfs(root);
 		System.out.println(a.maxDepth(root));
 		
+		// TreeNode.StartToDfs(root);
+		System.out.println(a.maxDepth_bad(root));
 		// check compareTo and hash method
 		// a.visited.add(root);
 		// if (a.visited.contains(root)) {
