@@ -1,23 +1,30 @@
 package info.runcode.tree;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 //Definition for a binary tree node.
 public class TreeNode implements java.lang.Comparable {
+
+	TreeSet<TreeNode> visited = new TreeSet<TreeNode>();
 	public static long NULL_PLACEHOLDER = Integer.MAX_VALUE;
 	public int val;
 	public TreeNode left;
 	public TreeNode right;
+	private int hashcode = 0;
 
 	public TreeNode(int x) {
 		val = x;
+	}
+
+	public TreeNode() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String toString() {
 		return String.valueOf(val);
 
 	}
-
 	/**
 	 * 
 	 * 
@@ -90,33 +97,67 @@ public class TreeNode implements java.lang.Comparable {
 		return root;
 	}
 
-	public void midtravel(TreeNode root) {
+	public void fronttravel12(TreeNode root) {
 		if (root == null)
 			return;
 		System.out.println(root.val);
 		if (root.left != null) {
+			fronttravel12(root.left);
+		}
+		if (root.right != null) {
+			fronttravel12(root.right);
+		}
+	}
+
+	public void midtravel(TreeNode root) {
+		if (root == null)
+			return;
+		if (root.left != null) {
 			midtravel(root.left);
 		}
+		System.out.println(root.val);
 		if (root.right != null) {
 			midtravel(root.right);
 		}
 	}
-
-	public void fronttravel12(TreeNode root) {
-		if (root == null)
-			return;
-		if (root.left != null) {
-			fronttravel12(root.left);
+	
+	public static void StartToDfs(TreeNode roots) {	
+		TreeNode instance = new TreeNode();
+		instance.dfs(roots);
+	}
+	
+	private void dfs(TreeNode roots) {	
+		
+		if (roots==null) {
+			return ;
 		}
-		System.out.println(root.val);
-		if (root.right != null) {
-			fronttravel12(root.right);
+		System.out.println(roots.val);
+		visited.add(roots);
+		
+		//all childs
+		TreeNode t = roots.left;
+		
+		if (t!=null&&!visited.contains(t)) { //
+			dfs(t);
+		}
+		t = roots.right;
+		if (t!=null&&!visited.contains(t)) { //
+			dfs(t);
 		}
 	}
 
 	@Override
 	public int compareTo(Object o) {
 
-		return this.hashCode() > o.hashCode() ? 1 : 0;
+		return this.hashCode() - o.hashCode() ;
+	}
+	
+	@Override
+	public int hashCode() {
+		if (hashcode == 0)
+		{
+			hashcode = (int) (this.val * 100000 + (System.currentTimeMillis() % 10000) + Math.random()*10);
+		}
+		return hashcode;
 	}
 }
