@@ -52,7 +52,6 @@ public class P104MaximumDepthofBinaryTree {
 	static int deep = 0;
 
 	private void dfs_bad(TreeNode roots) {
-
 		if (roots == null) {
 			return;
 		}
@@ -60,29 +59,21 @@ public class P104MaximumDepthofBinaryTree {
 		if (deep > maxdeep) {
 			maxdeep = deep;
 		}
-		// System.out.println(roots.val);
-
 		// all childs
 		TreeNode t = roots.left;
-
 		dfs_bad(t);
-
 		t = roots.right;
-
 		dfs_bad(t);
 		deep--;
-
 	}
 
 	private int dfs(TreeNode roots) {
-
 		if (roots == null) {
 			return 0;
 		}
 		int left = dfs(roots.left);
 		int right = dfs(roots.right);
 		return left > right ? left + 1 : right + 1;
-
 	}
 
 	public static void main(String[] args) {
