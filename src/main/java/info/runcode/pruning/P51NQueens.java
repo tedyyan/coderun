@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeSet;
 
 public class P51NQueens {
 	// 51. N-Queens
@@ -42,9 +43,95 @@ public class P51NQueens {
 	// Explanation: There exist two distinct solutions to the 4-queens puzzle as
 	// shown above.
 
-	
+	List<List<String>> solveNQueens_NoRecursion(int n) {
 
+		List<List<String>> r = new LinkedList<List<String>>();
+		
+		
+		for(int col=0;col<n;col++) {
+			int[][] board = new int[n][n];
+			for(int i=0;i<n;i++) {
+				for(int j=0;j<n;j++) 
+					board[i][j]=0;
+			}
+			//int[][] board = Arrays.co(boarda1,n);
+			board[0][col] = 1;
+			//fillin
+			TreeSet<Integer> colset = new TreeSet<Integer>();
+			colset.add(col);
+			TreeSet<Integer> pieset = new TreeSet<Integer>();
+			pieset.add(0+col);
+			TreeSet<Integer> naset = new TreeSet<Integer>();
+			naset.add(col-0);
+			int hasrow = 0;
+			for(int row=1;row<n;row++) {
+				int orginal=hasrow;
+				for(int incol=0;incol<n;incol++) {
+
+					if(colset.contains(incol))
+						continue;
+					if(pieset.contains(row+incol))
+						continue;
+					if(naset.contains(incol-row))
+						continue;
+					board[row][incol]=1;
+					colset.add(incol);
+					pieset.add(row+incol);
+					naset.add(incol-row);
+					hasrow++;
+					break;
+				}
+				if (orginal == hasrow) {
+					break;
+				}
+			}
+			if (hasrow==n-1) {
+				List<String> ss = new LinkedList<String>();
+				for(int i=0;i<n;i++) {
+					String t = "";
+					for(int j=0;j<n;j++) {
+						if(board[i][j]==1) {
+							t+="Q";
+						}else {
+							t+=".";
+						}
+					}
+					ss.add(t);
+				}
+				r.add(ss);
+			}
+		}
+		return r;
+	}
+	
 	List<List<String>> solveNQueens(int n) {
+
+		List<List<String>> r = new LinkedList<List<String>>();
+		TreeSet<Integer> colset = new TreeSet<Integer>();
+	
+		TreeSet<Integer> pieset = new TreeSet<Integer>();
+	
+		TreeSet<Integer> naset = new TreeSet<Integer>();
+	
+		return r;
+	}
+	
+	void dps(int r, int c, int n, TreeSet<Integer> colset,TreeSet<Integer> pieset,TreeSet<Integer> naset
+			,LinkedList<List<String>> result){
+		
+		for(int i=0;i<n;i++) {
+			
+			if ((!colset.contains(c))&&(!pieset.contains(c+r))&&(!naset.contains(c-r))) {
+				colset.add(c);
+				pieset.add(c+r);
+				naset.add(c-r);
+				
+				dps(r+1,c,n,colset,pieset,naset,result);
+			}
+		}
+	}
+
+	List<List<String>> solveNQueens_allowDiagonal(int n) {
 		if (n == 1) {
 			List<List<String>> r = new LinkedList<List<String>>();
 			LinkedList<String> t = new LinkedList<String>();
@@ -52,7 +139,7 @@ public class P51NQueens {
 			r.add(t);
 			return r;
 		}
-		List<List<String>> sub = solveNQueens(n - 1);
+		List<List<String>> sub = solveNQueens_allowDiagonal(n - 1);
 		List<List<String>> rr = new LinkedList<List<String>>();
 		
 		String dd = new String();
@@ -72,6 +159,7 @@ public class P51NQueens {
 				while (itinner.hasNext()) {
 					String b = itinner.next();
 					String c = b.substring(0, i) + "." + b.substring(i, b.length());
+					
 					nn.add(c);
 				}
 				rr.add(nn);
@@ -82,7 +170,7 @@ public class P51NQueens {
 
 	public static void main(String[] args) {
 		P51NQueens p = new P51NQueens();
-		int n = 2;
+		int n = 5;
 		List<List<String>> r = p.solveNQueens(n);
 		Iterator<List<String>> it = r.iterator();
 		while (it.hasNext()) {
