@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 
-public class P349 {
+public class P349IntersectionOfTwoArrays {
 //	349. Intersection of Two Arrays
 //	Easy
 //	310
@@ -58,7 +58,7 @@ public class P349 {
 	    }
 	    
 		 public static void main(String[] args) {
-			 P349 p = new P349();
+			 P349IntersectionOfTwoArrays p = new P349IntersectionOfTwoArrays();
 			 int[] input = new int[] {1,2,2,3,1,10}; //2,3,1,1,4  3,2,1,0,4 2,7,9,3,1 2,3,2
 			 int[] input2 = new int[] {11,2,3,2,0}; 
 			 System.out.println(Arrays.toString(p.intersection(input,input2)));

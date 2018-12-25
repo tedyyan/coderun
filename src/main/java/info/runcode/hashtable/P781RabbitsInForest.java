@@ -2,7 +2,7 @@ package info.runcode.hashtable;
 
 import java.util.HashMap;
 
-public class P781 {
+public class P781RabbitsInForest {
 //	781. Rabbits in Forest
 //	Medium
 //	112
@@ -65,7 +65,7 @@ public class P781 {
         
     }
 	 public static void main(String[] args) {
-		 P781 p = new P781();
+		 P781RabbitsInForest p = new P781RabbitsInForest();
 		 int[] input = new int[] {0,0,2,2,1,2}; //2,3,1,1,4  3,2,1,0,4 2,7,9,3,1 2,3,2
 		
 		 System.out.println((p.numRabbits(input)));

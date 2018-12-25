@@ -2,7 +2,7 @@ package info.runcode.hashtable;
 
 import java.util.Hashtable;
 
-public class P242 {
+public class P242ValidAnagram {
 //242. Valid Anagram
 	
 //	Given two strings s and t , write a function to determine if t is an anagram of s.
@@ -52,7 +52,7 @@ public class P242 {
     }
     
     public static void main(String[] args) {
-    	P242 p = new P242();
+    	P242ValidAnagram p = new P242ValidAnagram();
 		 String a = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
 		 String b = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
 		 System.out.println(p.isAnagram(a,b));
