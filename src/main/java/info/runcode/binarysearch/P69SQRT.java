@@ -32,8 +32,9 @@ public class P69SQRT {
 	
     public int mySqrt(int x) {
     	
-    	int l=0,r=x,m=x/2;
+    	int l=0,r=x,m=0;
     	while(l<r) {
+    		m = l+(r-l)/2;
     		if (m*m == x) {
     			return m;
     		}else if(m*m > x) {
@@ -41,14 +42,33 @@ public class P69SQRT {
     		}else {
     			l = l + m;
     		}
-    		m = (l+r)/2;
     	}
 		return m;
         
     }
     
+    public double mySqrtWithAcc(int x, double d) {
+    	
+    	double l=0,r=x,m=0;
+    	while(l<r) {
+    		m = l+(r-l)/2;
+    		if ((m*m > (x - d)) && ((m*m < (x + d)) {
+    			return m;
+    		}else if(m*m > x) {
+    			r = r - m;
+    		}else {
+    			l = l + m;
+    		}
+    	}
+		return m;
+        
+    }
+ 
     public static void main(String[] args) {
     	P69SQRT p = new P69SQRT();
-    	System.out.println(p.mySqrt(8));
+    	double a = p.mySqrtWithAcc(10,0.0001);
+    	System.out.println(a);
+    	double b = a * a;
+    	System.out.println(b);
     }
 }
