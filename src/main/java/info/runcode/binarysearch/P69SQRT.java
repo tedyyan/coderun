@@ -31,33 +31,43 @@ public class P69SQRT {
 //	             the decimal part is truncated, 2 is returned.
 	
     public int mySqrt(int x) {
-    	
-    	int l=0,r=x,m=0;
+    	if (x==1) return 1;
+    	long l=0,r=x,m=x;
     	while(l<r) {
+    		System.out.println("l:"+l+"r:"+r);
     		m = l+(r-l)/2;
+    		if (l == r-1) {
+    			return  (int)m;
+    		}
     		if (m*m == x) {
-    			return m;
+    			return (int) m;
     		}else if(m*m > x) {
-    			r = r - m;
+    			r = r - (r-l)/2;
     		}else {
-    			l = l + m;
+    			l = l + (r-l)/2;
     		}
     	}
-		return m;
+		return  (int)m;
         
     }
-    
+    public int mySqrtNB(int x) {
+        long r = x;
+        while (r * r > x) {
+            r = (r + x / r) / 2;
+        }
+        return (int)r;
+    }
     public double mySqrtWithAcc(int x, double d) {
     	
     	double l=0,r=x,m=0;
     	while(l<r) {
-    		m = l+(r-l)/2;
-    		if ((m*m > (x - d)) && ((m*m < (x + d)) {
+    		m =  l+ (r-l)/2;
+    		if ((m*m > (x - d)) && (m*m < (x + d))) {
     			return m;
     		}else if(m*m > x) {
-    			r = r - m;
+    			r = r - (r-l)/2;
     		}else {
-    			l = l + m;
+    			l = l + (r-l)/2;
     		}
     	}
 		return m;
@@ -66,7 +76,9 @@ public class P69SQRT {
  
     public static void main(String[] args) {
     	P69SQRT p = new P69SQRT();
-    	double a = p.mySqrtWithAcc(10,0.0001);
+    	int la = p.mySqrt(2147395599);
+    	System.out.println(la);
+    	double a = p.mySqrtWithAcc(5,0.000000001);
     	System.out.println(a);
     	double b = a * a;
     	System.out.println(b);
