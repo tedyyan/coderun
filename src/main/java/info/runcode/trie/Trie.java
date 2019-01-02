@@ -14,11 +14,29 @@ class Trie {
     	for(int i=0;i<word.length();i++) {
             char c = word.charAt(i);
             if (ws.children[c-'a'] == null ) {
-            	ws.children[c-'a'] = new TrieNode(c);
+            	TrieNode t = new TrieNode(c);
+            	ws.children[c-'a'] = t;
+            	ws.has_sub_word = true;            	
             }
             ws = ws.children[c-'a'];
     	}
     	ws.is_end_word = true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    public TrieNode getNode(String word) {
+    	TrieNode ws = root;
+    
+    	for(int i=0;i<word.length();i++) {
+    		 char c = word.charAt(i);
+    		 if (ws.children[c-'a'] == null ) {
+    			 return null;
+    		 }
+             ws = ws.children[c-'a'];
+    	}
+    	
+		return ws;
+        
     }
     
     /** Returns if the word is in the trie. */
