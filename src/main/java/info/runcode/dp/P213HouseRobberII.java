@@ -1,6 +1,6 @@
 package info.runcode.dp;
 
-public class P213 {
+public class P213HouseRobberII {
 	//House Robber II
 	public int[] rob2(int[] nums) {
 		 if (nums.length==0) {
@@ -55,7 +55,7 @@ public class P213 {
 	
 	 
 	 public static void main(String[] args) {
-		 P213 p = new P213();
+		 P213HouseRobberII p = new P213HouseRobberII();
 		 int[] input = new int[] {1}; //2,3,1,1,4  3,2,1,0,4 2,7,9,3,1 2,3,2
 		 System.out.println(p.rob(input));
 		 
