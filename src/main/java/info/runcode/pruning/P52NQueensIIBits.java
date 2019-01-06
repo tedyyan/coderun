@@ -1,8 +1,8 @@
 package info.runcode.pruning;
 
-import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class P52NQueensII {
+public class P52NQueensIIBits {
 //	52. N-Queens II
 //	Hard
 //
@@ -38,21 +38,39 @@ public class P52NQueensII {
 //	]
 	public int totalNQueens(int n) {
 		
-		
-		return n;
+		Integer c = new Integer(0);
+		return dfs(0,0,0,0,c,n);
         
     }
 	
-	public void dfs(int row,int col,int pie,int na,Integer count,int n) {
+	public int cc = 0;
+	
+	public int dfs(int row,int col,int pie,int na,Integer count,int n) {
 		if (row>=n) {
 			count++;
-			return ;
+			cc++;
+			return count;
 		}
-		int x = (~(col&pie&na))&((1<<n)-1);
+		int x = (~(col|pie|na))&((1<<n)-1);
 		while(x>0) {
 			int p = x&(-x);
-			dfs(row+1,col|p,pie|(p<<1),na|(p>>1),count,n);
+			count = dfs(row+1,col|p,(pie|p)<<1,(na|p)>>1,count,n);
 			x = x&(x-1);
 		}
+		return count;
+	}
+	
+	public static void main(String[] args) {
+		P52NQueensIIBits p = new P52NQueensIIBits();
+		System.out.println(p.totalNQueens(4));
+		System.out.println(p.cc);
+		AtomicInteger  c = new AtomicInteger(190000);
+		System.out.println(c);
+		p.updateInteger(c);
+		System.out.println(c);
+	}
+	
+	public void updateInteger(AtomicInteger  x) {
+		x.incrementAndGet();
 	}
 }

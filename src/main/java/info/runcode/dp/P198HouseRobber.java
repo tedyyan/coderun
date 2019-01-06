@@ -22,7 +22,7 @@ Output: 12
 Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
              Total amount you can rob = 2 + 9 + 1 = 12.
  */
-public class P198 {
+public class P198HouseRobber {
 
 	 
 	 public int rob(int[] nums) {
@@ -53,7 +53,7 @@ public class P198 {
 	
 	 
 	 public static void main(String[] args) {
-		 P198 p = new P198();
+		 P198HouseRobber p = new P198HouseRobber();
 		 int[] input = new int[] {2,3,2}; //2,3,1,1,4  3,2,1,0,4 2,7,9,3,1 2,3,2
 		 System.out.println(p.rob(input));
 		 

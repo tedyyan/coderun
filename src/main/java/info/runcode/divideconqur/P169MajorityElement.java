@@ -2,7 +2,6 @@ package info.runcode.divideconqur;
 
 import java.util.Arrays;
 
-import info.runcode.dp.P213;
 
 public class P169MajorityElement {
 //	169. Majority Element
@@ -15,7 +14,7 @@ public class P169MajorityElement {
 //	Favorite
 //
 //	Share
-//	Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2  times.
+//	Given an array of size n, find the majority element. The majority element is the element that appears more than 鈱� n/2  times.
 //
 //	You may assume that the array is non-empty and the majority element always exist in the array.
 //
