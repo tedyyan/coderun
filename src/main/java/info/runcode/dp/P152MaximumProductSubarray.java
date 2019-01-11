@@ -49,16 +49,6 @@ public class P152MaximumProductSubarray {
 			 }
 			 
 
-			 t = tpmax * a[i];
-			 if (t<tpmax) {
-				 tpmax = t;
-			 }else {
-				 tpmax = a[i];
-			 }
-
-			 if (t>tmax) {
-				 tmax=t;
-			 }	
 		 }
 		 
 		return tmax;
