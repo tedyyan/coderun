@@ -1,4 +1,4 @@
-package info.runcode;
+package info.runcode.dp.stock;
 
 public class P123StockBSIII {
 //	123. Best Time to Buy and Sell Stock III

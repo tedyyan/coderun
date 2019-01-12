@@ -69,18 +69,60 @@ public class P152MaximumProductSubarray {
 		 P152MaximumProductSubarray p = new P152MaximumProductSubarray();
 		 int[] a = new int[] {-1,10,2,-1,50,-2 }; //-2,0,-1 -10,1,2,-5 -2,0,-1
 		 System.out.println(p.maxProduct(a));
+		 System.out.println(p.dps(a,a.length-1));
+		 int[] b = new int[a.length];
+		 int[] c = new int[a.length];
+		 System.out.println(p.teacher(a,b,c));
 	 }
 	 
 	 public int dps(int[]a, int endindex) {
+		 
 		 if (endindex == 0)
 			 return a[0];
 		 
 		 int pre = dps(a,endindex-1);
-		 int current = pre * a[endindex];
-		 if (pre > current) {
-			 return pre;
-		 }else {
-			 return current;
+		 int tmp = a[endindex];
+		 int max = a[endindex];
+		 for(int i=endindex-1;i>=0;i--) {
+			 tmp = a[i] * tmp;			 
+			 if (tmp>max) {
+				 max = tmp;
+			 }
 		 }
+		 if (max<pre)
+			 max = pre;
+		 return max;
+	 }
+	 
+	 public int teacher(int[]a,  int[]zmax, int[] fmax) {
+		 
+		if ((a==null)||(a.length==0)){
+			return 0;
+		}
+			 zmax[0] = a[0];
+			 fmax[0] = a[0];
+		
+		 
+		 for(int i=1;i<a.length;i++) {
+			 if (a[i]>0) {
+				 zmax[i] = zmax[i -1 ] * a[i] > a[i]? zmax[i -1 ] * a[i]:a[i];
+			 }else {
+				 zmax[i] = fmax[i -1 ] * a[i] > a[i]? fmax[i -1 ] * a[i]:a[i];
+			 }
+	
+			 if (a[i]>0) {
+				 fmax[i] = fmax[i -1 ] * a[i] < a[i]? fmax[i -1 ] * a[i]:a[i];
+			 }else {
+				 fmax[i] = zmax[i -1 ] * a[i] < a[i]? zmax[i -1 ] * a[i]:a[i];
+			 }
+		 }
+		 int max = a[0];
+		 for(int j=1;j<a.length;j++) {
+			 if (zmax[j]>max)
+				 max = zmax[j];
+		 }
+		 
+		return max;
+		 
 	 }
 }
