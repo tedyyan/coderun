@@ -33,5 +33,5 @@ public class P188StockBSIV {
 	 public int maxProfit(int k, int[] prices) {
 		return k;
 	        
-	    }
+	 }
 }
