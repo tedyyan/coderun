@@ -39,9 +39,59 @@ public class P122StockBSII {
 //	274,800
 //	Submissions
 //	546,100
-	public int maxProfit(int[] prices) {
+	public int maxProfit(int[] p) {
+
+		// 0: ²»Âò²»Âô
+		// 1: Âò
+		// 2: Âô
+
+		int[][] ran = new int[p.length][3];
+
+		ran[0][0] = 0;
+		ran[0][1] = -p[0];
+		ran[0][2] = 0;
+
+		int max = 0;
+		for (int i = 1; i < p.length; i++) {
+			// 0: ²»Âò²»Âô
+			ran[i][0] = ran[i - 1][0];
+			// 1: Âò
+			ran[i][1] = ran[i - 1][1] > ran[i - 1][0] - p[i] ? ran[i - 1][1] : ran[i - 1][0] - p[i];
+			// 2: Âô
+			ran[i][2] = ran[i - 1][1] + p[i];
+			
+			max = max(max, ran[i][0], ran[i][1], ran[i][2]);
+
+		}
 		
-		return 0;
-        
-    }
+		
+		return max;
+	}
+
+	public int max(int i, int j, int k, int m) {
+		int tmp = i;
+		if (i > j) {
+			tmp = i;
+		} else {
+			tmp = j;
+		}
+
+		if (tmp > k) {
+
+		} else {
+			tmp = k;
+		}
+
+		if (tmp > m) {
+			return tmp;
+		} else {
+			return m;
+		}
+
+	}
+	public static void main(String[] args) {
+		P122StockBSII p = new P122StockBSII();
+		int[] a = {7,1,5,3,6,4 }; // 7,1,5,3,6,4  7,6,4,3,1 20,10,3,13,9 3,3,5,0,0,3,1,4
+		System.out.print(p.maxProfit(a));
+	}
 }

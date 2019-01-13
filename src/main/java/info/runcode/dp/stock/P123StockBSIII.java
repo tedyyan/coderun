@@ -13,9 +13,9 @@ public class P123StockBSIII {
 //	Share
 //	Say you have an array for which the ith element is the price of a given stock on day i.
 //
-//	Design an algorithm to find the maximum profit. You may complete at most two transactions.
+//	Design an algorithm to find the maximum profit. You may complete at most two tprofitsactions.
 //
-//	Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
+//	Note: You may not engage in multiple tprofitsactions at the same time (i.e., you must sell the stock before you buy again).
 //
 //	Example 1:
 //
@@ -29,57 +29,89 @@ public class P123StockBSIII {
 //	Output: 4
 //	Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
 //	             Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are
-//	             engaging multiple transactions at the same time. You must sell before buying again.
+//	             engaging multiple tprofitsactions at the same time. You must sell before buying again.
 //	Example 3:
 //
 //	Input: [7,6,4,3,1]
 //	Output: 0
-//	Explanation: In this case, no transaction is done, i.e. max profit = 0.
+//	Explanation: In this case, no tprofitsaction is done, i.e. max profit = 0.
 	public int maxProfit(int[] p) {
-		int k=2;
-		 
-		// 0: 不买不卖
-		// 1: 买
-		// 2: 卖
-		
-        int[][][] ran = new int[p.length][k][3];
-        for(int l=0;l<k;l++) {
-            ran[0][l][0]=0;
-            ran[0][l][1]=-p[0];  
-            ran[0][l][2]=0;          	
-        }     
-        int max = 0;   
-        for(int i=1;i<p.length;i++)
-        {
-        	for(int j=1;j<k;j++) {
-        		// 0: 不买不卖
-        		ran[i][j][0] = ran[i-1][j][0];
-        		// 1: 买
-        		ran[i][j][1] = ran[i-1][j][1]>ran[i-1][j-1][0]-p[i] ? ran[i-1][j][1] : ran[i-1][j-1][0]-p[i];
-        		// 2: 卖
-        		ran[i][j][2] = ran[i-1][j][2]>ran[i-1][j-1][1]+p[i] ? ran[i-1][j][2] : ran[i-1][j-1][1]+p[i];
-        		max = max(ran[i][j][0],ran[i][j][0],ran[i][j][1]);
-        	}
-        }
-        return max;
-    }
-	public int max(int i, int j, int k) {
-		int tmp = i;
-		if (i>j) {
+		// 最后一维
+		// 0:  卖
+		// 1:  买
+
+		long[][][] profit = new long[p.length][3][2];
+
+		profit[0][0][0] = 0;
+		profit[0][0][1] = -p[0];
+		profit[0][1][0] = Integer.MIN_VALUE;  //not exist
+		profit[0][1][1] = Integer.MIN_VALUE;  //not exist
+		profit[0][2][0] = Integer.MIN_VALUE;  //not exist
+		profit[0][2][1] = Integer.MIN_VALUE;  //not exist
+
+		int max = 0;
+		for (int i = 1; i < p.length; i++) {
+			//中间k的含义
+			// 0: 之前没做过交易
+			profit[i][0][0] = profit[i-1][0][0];
+			profit[i][0][1] = max2(profit[i-1][0][1],profit[i-1][0][0]-p[i]);
+			
+			// 1:之前做了一个交易
+			profit[i][1][0] = max2(profit[i-1][1][0],profit[i-1][0][1] + p[i]);
+			profit[i][1][1] = max2(profit[i-1][1][1],profit[i-1][1][0] - p[i]);
+			// 2: 之前做了两个交易
+			profit[i][2][0] = max2(profit[i-1][2][0],profit[i-1][1][1] + p[i]);
+			
+
+		}
+		int end = p.length-1;
+		max = (int) max3(profit[end][0][0], profit[end][1][0], profit[end][2][0]);
+		return max;
+	}
+	
+	public long max2(long i, long j) {
+		return i>j?i:j;
+	}
+	public long max3(long i, long j, long k) {
+		long tmp = i;
+		if (i > j) {
 			tmp = i;
-		}else {
+		} else {
 			tmp = j;
 		}
-		
+
 		if (tmp > k) {
-			return tmp;
-		}else {
-			return k;
+
+		} else {
+			tmp = k;
 		}
+		return tmp;
 	}
+	public long max4(long i, long j, long k, long m) {
+		long tmp = i;
+		if (i > j) {
+			tmp = i;
+		} else {
+			tmp = j;
+		}
+
+		if (tmp > k) {
+
+		} else {
+			tmp = k;
+		}
+
+		if (tmp > m) {
+			return tmp;
+		} else {
+			return m;
+		}
+
+	}
+
 	public static void main(String[] args) {
 		P123StockBSIII p = new P123StockBSIII();
-		int[] a = {3,3,5,0,0,3,1,4}; // 7,1,5,3,6,4  7,6,4,3,1 20,10,3,13,9
+		int[] a = { 3, 3, 5, 0, 0, 3, 1, 4 }; // 7,1,5,3,6,4 7,6,4,3,1 20,10,3,13,9
 		System.out.print(p.maxProfit(a));
 	}
 }
