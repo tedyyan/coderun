@@ -1,4 +1,4 @@
-package info.runcode;
+package info.runcode.contest;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

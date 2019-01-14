@@ -1,4 +1,4 @@
-package info.runcode;
+package info.runcode.contest;
 
 import java.util.ArrayList;
 import java.util.List;
