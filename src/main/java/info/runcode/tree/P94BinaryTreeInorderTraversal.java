@@ -36,7 +36,14 @@ public class P94BinaryTreeInorderTraversal {
 		return rr;
 
 	}
-	
+	private void Recursive(TreeNode root, List<Integer> rr) {
+		if (root == null) {
+			return;
+		}
+		this.Recursive(root.left, rr);
+		rr.add(root.val);
+		this.Recursive(root.right, rr);
+	}
 	private void Iteratively(TreeNode root, List<Integer> rr) {
 		if (root == null) {
             return ;
@@ -61,14 +68,7 @@ public class P94BinaryTreeInorderTraversal {
 
 	}
 
-	private void Recursive(TreeNode root, List<Integer> rr) {
-		if (root == null) {
-			return;
-		}
-		this.Recursive(root.left, rr);
-		rr.add(root.val);
-		this.Recursive(root.right, rr);
-	}
+	
 
 	public static void main(String[] args) {
 		P94BinaryTreeInorderTraversal p = new P94BinaryTreeInorderTraversal();
