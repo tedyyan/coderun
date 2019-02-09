@@ -70,17 +70,20 @@ public class P46Permutations {
 			one.remove(value);
 		}
 	}
+	
 	public static void main(String[] args) {
 		P46Permutations p = new P46Permutations();
-		int[] nums = {1,2,3};
+		int[] nums = {1,2,3,4};
 		List<List<Integer>> r = p.permute(nums );
-		
+		int i = 0;
 		for (List<Integer> element:r) {
 			for(Integer ee : element) {
 				System.out.print(ee);
 				System.out.print(" ");
 			}
 			System.out.println();
+			i++;
 		}
+		System.out.println(i);
 	}
 }

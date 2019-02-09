@@ -3,6 +3,7 @@ package info.runcode.dfsbfs;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 public class P77Combinations {
 //	77. Combinations
@@ -31,10 +32,42 @@ public class P77Combinations {
 //	]
 	
 	public List<List<Integer>> combine(int n, int k) {
-		
-		
-		return null;        
+		if (n<k) {
+			return new ArrayList<List<Integer>>();
+		}
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+		Stack<Integer> r = new Stack<Integer>();
+		dps(1,n,k,result,r);
+		return result;        
     }
+	
+	private void  dps(int start, int n,int k,List<List<Integer>> result,Stack<Integer> r) {
+		if(k==0) {
+			result.add((List<Integer>) r.clone());
+		}
+		for(int i=start;i<=n;i++) {
+			r.push(i);
+			dps(i+1,n,k-1,result,r);
+			r.pop();
+		}
+	}
+	
+	public static void main(String[] args) {
+		P77Combinations p = new P77Combinations();
+		int nums = 4;
+		int cunt = 2;
+		List<List<Integer>> r = p.combine(nums , cunt );
+		int i = 0;
+		for (List<Integer> element:r) {
+			for(Integer ee : element) {
+				System.out.print(ee);
+				System.out.print(" ");
+			}
+			System.out.println();
+			i++;
+		}
+		System.out.println(i);
+	}
 	
 	private List<List<Integer>>  dpsSlow(int n,int k) {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();

@@ -19,7 +19,7 @@ public class P143ReorderList {
 //
 //	Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 	
-	public void reorderList(P61.ListNode head) {
+	public void reorderList(ListNode head) {
 	        
 	    }
 }

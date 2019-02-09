@@ -1,6 +1,6 @@
 package info.runcode.linklist;
 
-public class P61 {
+public class P61RotateRight {
 	/**
 	 * 
 	 * Given a linked list, rotate the list to the right by k places, where k is non-negative.
@@ -25,11 +25,6 @@ rotate 4 steps to the right: 2->0->1->NULL
 	 * @author yanxuan
 	 *
 	 */
-	public class ListNode {
-		      int val;
-		      ListNode next;
-		     ListNode(int x) { val = x; }
-	}
 	/**
 	 * Definition for singly-linked list.
 	 * public class ListNode {
@@ -64,36 +59,16 @@ rotate 4 steps to the right: 2->0->1->NULL
 	    }
 	
     public static void main(String[] args) {
-    	P61 a = new P61();
+    	P61RotateRight a = new P61RotateRight();
     	int[] head = {0,1,2}; // {0,1,2}; {2,1,0};
     	
     	int k = 4;
-    	ListNode h = a.BuildAList(head);
-    	a.PrintAList(h);
+    	ListNode h = ListNode.BuildAList(head);
+    	ListNode.PrintAList(h);
     	
     	ListNode r = a.rotateRight(h, k);
-    	a.PrintAList(r);
+    	ListNode.PrintAList(r);
     }
     
-    public static ListNode BuildAList(int[] a){
-    	P61 in = new P61();
-    	ListNode r = null;
-    	ListNode h = null;
-    	for(int i=a.length-1;i>=0;i--) {
-    		h = in.new ListNode(a[i]);
-    		h.next = r;
-    		r = h;
-    	}
-    	return h;
-    }
-    
-    public static void PrintAList(ListNode head){
-    	ListNode tmp = head;
-    	while(tmp!=null) {
-    		System.out.print(tmp.val);
-    		System.out.print("->");
-    		tmp=tmp.next;
-    	}
-    	System.out.println();
-    }
+   
 }

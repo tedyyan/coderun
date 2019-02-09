@@ -1,8 +1,8 @@
 package info.runcode.linklist;
 
-import info.runcode.linklist.P61.ListNode;
+import info.runcode.linklist.ListNode;
 
-public class P83 {
+public class P83RemoveDuplicatesFromSortedList {
 //	83. Remove Duplicates from Sorted List
 //	Easy
 //	591
@@ -46,13 +46,13 @@ public class P83 {
     }
 	
 	public static void main(String[] args) {
-		P83 a = new P83();
+		P83RemoveDuplicatesFromSortedList a = new P83RemoveDuplicatesFromSortedList();
     	int[] head = {0,1,1,1,1,1,3,10,10,5}; // {0,1,2}; {2,1,0};
     	
-    	ListNode h = P61.BuildAList(head);
-    	P61.PrintAList(h);
+    	ListNode h = ListNode.BuildAList(head);
+    	ListNode.PrintAList(h);
     	
     	ListNode r = a.deleteDuplicates(h);
-    	P61.PrintAList(r);
+    	ListNode.PrintAList(r);
     }
 }
