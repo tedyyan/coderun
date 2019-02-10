@@ -1,4 +1,4 @@
-package info.runcode.zzz;
+package info.runcode.dfsbfs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,7 +79,7 @@ public class P39CombinationSum {
 	public static void main(String[] args) {
 		P39CombinationSum p = new P39CombinationSum();
 		int[] candidates = new int[]{2,3,5}; //2,3,5 2,3,6,7
-		int target = 0; //8 7
+		int target = 8; //8 7
 		List<List<Integer>> r = p.combinationSum(candidates, target);
 		for (List<Integer> element:r) {
 			for(Integer ee : element) {
