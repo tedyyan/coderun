@@ -44,7 +44,7 @@ public class P86PartitionList {
 					leftHead = tmp;	
 					leftEnd = tmp;
 				}else {
-					leftHead.next = tmp;
+					leftEnd.next = tmp;
 					leftEnd = tmp;
 				}
 			}			
@@ -56,9 +56,9 @@ public class P86PartitionList {
     }
 	 public static void main(String[] args) {
 		 P86PartitionList a = new P86PartitionList();
-	    	int[] head = {6,11,11,2}; // {0,1,2}; {2,1,0};
+	    	int[] head = {1,4,3,2,5,2}; // {0,1,2}; {2,1,0};[1,4,3,2,5,2]
 	    	
-	    	int k = 7;
+	    	int k = 3;
 	    	ListNode h = ListNode.BuildAList(head);
 	    	ListNode.PrintAList(h);
 	    	
