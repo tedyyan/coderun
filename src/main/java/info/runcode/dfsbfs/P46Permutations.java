@@ -52,21 +52,19 @@ public class P46Permutations {
 	void dfs(int[] n, Set<Integer> unused, Stack<Integer> one,List<List<Integer>> result) {
 		if (unused.size() == 0) {
 			//Integer[] a = one.toArray(new Integer[n.length]);
-			result.add(one);
-			
+			result.add((Stack<Integer>) one.clone());
 			return;
 		}
 		Iterator<Integer> it = unused.iterator();
 		while(it.hasNext()) {
 			Integer value = it.next();
 			one.push(value);
-			Stack<Integer> b = (Stack<Integer>) one.clone();
 			
 			Integer[] nextunused = unused.toArray(new Integer[unused.size()]);			
 			Set<Integer> b2 = new TreeSet<Integer>(Arrays.asList(nextunused));
 			b2.remove(value);
 			
-			dfs(n,b2,b,result);	
+			dfs(n,b2,one,result);	
 			one.pop();
 		}
 	}

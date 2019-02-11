@@ -37,17 +37,17 @@ public class P77Combinations {
 		}
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
 		Stack<Integer> r = new Stack<Integer>();
-		dps(1,n,k,result,r);
+		dps(1,n,k,r,result);
 		return result;        
     }
 	
-	private void  dps(int start, int n,int k,List<List<Integer>> result,Stack<Integer> r) {
+	private void  dps(int start, int n,int k,Stack<Integer> r,List<List<Integer>> result) {
 		if(k==0) {
 			result.add((List<Integer>) r.clone());
 		}
 		for(int i=start;i<=n;i++) {
 			r.push(i);
-			dps(i+1,n,k-1,result,r);
+			dps(i+1,n,k-1,r,result);
 			r.pop();
 		}
 	}
