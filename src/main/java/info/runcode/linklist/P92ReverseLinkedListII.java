@@ -19,6 +19,9 @@ public class P92ReverseLinkedListII {
 //
 //	Input: 1->2->3->4->5->NULL, m = 2, n = 4
 //	Output: 1->4->3->2->5->NULL
+	
+//	Runtime: 2 ms, faster than 97.09% of Java online submissions for Reverse Linked List II.
+//	Memory Usage: 36.8 MB, less than 100.00% of Java online submissions for Reverse Linked List II.
 	public ListNode reverseBetween(ListNode head, int m, int n) {
 		if (head == null) return head;
 		if (m>=n) return head;
