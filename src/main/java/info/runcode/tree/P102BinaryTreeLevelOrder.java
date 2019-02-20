@@ -1,12 +1,10 @@
-package info.runcode.tree.dfs1bfs;
+package info.runcode.tree;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
-
-import info.runcode.tree.TreeNode;
 
 public class P102BinaryTreeLevelOrder {
 //	102. Binary Tree Level Order Traversal
