@@ -1,6 +1,7 @@
 package info.runcode.dp;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class P120Triangle {
@@ -29,7 +30,7 @@ public class P120Triangle {
 //	Note:
 //
 //	Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
-	public int minimumTotal(List<List<Integer>> triangle) {
+	public int minimumTotalBad(List<List<Integer>> triangle) {
 		if ((triangle == null) || (triangle.size()==0)){
 			return 0;
 		}
@@ -93,17 +94,65 @@ public class P120Triangle {
 		 ArrayList<Integer> l20 = new ArrayList<Integer>();
 		 l20.add(1);
 		 l20.add(-1);
-		 l20.add(-3);
+		 l20.add(3);
 		 triangle.add(l20);
 		 //---------------------------------
-/*
+
 		 ArrayList<Integer> l30 = new ArrayList<Integer>();
 		 l30.add(4);
 		 l30.add(1);
 		 l30.add(8);
 		 l30.add(3);
 		 triangle.add(l30);
-		*/ 
+		
 		System.out.println(pt.minimumTotal(triangle ));
+	 }
+	 
+	 public int minimumTotal(List<List<Integer>> triangle) {
+		if ((triangle == null) || (triangle.size()==0)||triangle.get(0).size()==0){
+			return 0;
+		}
+		Iterator<List<Integer>> outer=triangle.iterator();
+		List<Integer> upperouter=new ArrayList<Integer>();
+		Iterator<Integer> inner=null;
+		int i=0;
+		List<Integer> b = new ArrayList<Integer>();
+		
+		while(outer.hasNext()) {
+			List<Integer> a = outer.next();
+			inner = a.iterator();
+			i=0;
+			b.clear();
+			if (upperouter.isEmpty()) {				
+				upperouter.add(inner.next());
+				continue;
+			}
+			while(inner.hasNext()) {
+				int c = inner.next().intValue();
+				int lp=i-1;
+				int rp=i;
+				Integer tmp=0;
+				if ((lp>=0)&&(rp<=upperouter.size()-1)) {
+					tmp = upperouter.get(lp)<upperouter.get(rp)?upperouter.get(lp):upperouter.get(rp);
+					b.add(tmp+c);
+				}else if(lp>=0) {
+					b.add(upperouter.get(lp)+c);
+				}else if(rp<=upperouter.size()-1) {
+					b.add(upperouter.get(rp)+c);
+				}else {
+					System.out.print("wrong");
+				}
+				i++;
+			}
+			upperouter.clear();
+			upperouter.addAll(b);
+		}
+		int min = upperouter.get(0);
+		for(int j=1;j<upperouter.size();j++) {
+			if (upperouter.get(j)<min) {
+				min = upperouter.get(j);
+			}
+		}
+		return min;
 	 }
 }

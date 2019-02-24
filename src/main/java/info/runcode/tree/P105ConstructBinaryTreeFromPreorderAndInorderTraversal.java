@@ -47,6 +47,10 @@ public class P105ConstructBinaryTreeFromPreorderAndInorderTraversal {
 		public int increaseAndGet() {
 			return ++me;
 		}
+		
+		public void Add(int a) {
+			this.me += a;
+		}
 	}
 
 	public TreeNode buildTree(int[] preorder, int[] inorder) {

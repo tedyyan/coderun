@@ -20,18 +20,41 @@ public class P143ReorderList {
 //	Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 	
 	public void reorderList(ListNode head) {
+
+		if (head == null) {
+			return ;
+		}
+		ListNode second = head.next;
+		if ((second ==null)) {
+			return ;
+		}
+		ListNode third = head.next.next;
+
+		if ((third ==null)) {
+			return ;
+		}
+		ListNode fast = head;
+		ListNode slow = head;
+		while(fast!=null)
+		{
+			
+		}
 		
 	}
 	
 	public ListNode reverse(ListNode head){
-		ListNode iter = head;
-		ListNode tmp = null;
+		if (head == null) {
+			return null;
+		}
+		ListNode iter = head.next;
+		ListNode tmp = head;
+		ListNode previous = head;
+		head.next = null;
 		while(iter!=null) {
-			tmp = iter.next;
-			if (tmp==null)
-				break;
-			ListNode ne = tmp.next ;
-			tmp.next = iter;
+			tmp = iter;
+			iter = iter.next;
+			tmp.next = previous;
+			previous = tmp;
 		}
 		return tmp;
 	}

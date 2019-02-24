@@ -108,17 +108,37 @@ public class TreeNode implements java.lang.Comparable {
 			fronttravel12(root.right);
 		}
 	}
-
+	int layersep = 1;
+	public TreeNode reset() {
+		 layersep = 1;
+		return this;
+	}
 	public void midtravel(TreeNode root) {
 		if (root == null)
 			return;
+		layersep++;
 		if (root.left != null) {
 			midtravel(root.left);
 		}
-		System.out.println(root.val);
+		layersep--;
+		
+		System.out.print(" ");
+		for(int i=0;i<layersep;i++) {
+			System.out.print("|");;
+		}
+		
+		System.out.print(" "+root.val+" ");
+		
+		for(int i=0;i<layersep;i++) {
+			System.out.print("|");
+		}
+		System.out.print(" ");
+
+		layersep++;
 		if (root.right != null) {
 			midtravel(root.right);
 		}
+		layersep--;
 	}
 	
 	public static void StartToDfs(TreeNode roots) {	
